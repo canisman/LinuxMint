@@ -1,0 +1,14 @@
+[Unit]
+Description=noVNC Web VNC Client
+After=network.target vncserver@1.service
+Requires=vncserver@1.service
+
+[Service]
+Type=simple
+User=vscode
+ExecStart=/opt/novnc/utils/novnc_proxy --vnc localhost:5901 --listen 6080
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
